@@ -11,11 +11,8 @@ import kotlinx.coroutines.flow.flow
 
 class PokedexRepository(val pokeService: PokeService) : IPokedexRepository {
 
-    override fun getPokedex(limit: Int, offSet: Int): Flow<Resource<PokemonList>> {
-        return flow {
-            val result = safeApiCall { pokeService.getPokemonList(limit, offSet) }
-            emit(result)
-        }
+    override suspend fun getPokedex(limit: Int, offSet: Int): Resource<PokemonList> {
+            return safeApiCall { pokeService.getPokemonList(limit, offSet) }
     }
 
 }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mvpstudy.databinding.FragmentHomeBinding
 import com.example.mvpstudy.presentation.home.domain.model.PokedexListEntry
@@ -27,9 +28,20 @@ class HomeFragment: Fragment(), HomeContract.View {
         return binding.root
     }
 
+
     override fun setupAdapter(pokedexListEntry: PokedexListEntry?) {
-        pokedexListEntry?.pokedex?.forEach {
-            Log.d("pokedexText", it.pokemonName)
+        pokedexListEntry?.let {
+            it.pokedex.forEach { pokemon ->
+                Log.d("pokedex", pokemon.pokemonName)
+            }
         }
+    }
+
+    override fun networkErrorToast() {
+        Toast.makeText(context, "Problema de conexão com a internet", Toast.LENGTH_LONG).show()
+    }
+
+    override fun unknownErrorToast() {
+        Toast.makeText(context, "Um erro desconhecido ocorreu", Toast.LENGTH_LONG).show()
     }
 }

@@ -21,20 +21,5 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="16dp"/>
 
-    <TextView
-        android:id="@+id/welcome_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="56dp"
-        android:text="Bem vindo, deu certo!"
-        android:textAlignment="center"
-        android:textColor="@color/design_default_color_on_secondary"
-        app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintEnd_toEndOf="@id/guideline_end"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

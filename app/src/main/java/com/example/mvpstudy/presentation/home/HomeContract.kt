@@ -1,8 +1,6 @@
 package com.example.mvpstudy.presentation.home
 
 import android.graphics.drawable.Drawable
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import com.example.mvpstudy.presentation.home.domain.model.PokedexListEntry
 
 object HomeContract {

@@ -3,11 +3,11 @@ package com.example.mvpstudy.presentation.home
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import androidx.compose.ui.graphics.Color
 import androidx.palette.graphics.Palette
 import com.example.mvpstudy.presentation.home.domain.usecase.abstraction.IPokedexUseCase
 import com.example.mvpstudy.utils.Resource
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import kotlin.coroutines.CoroutineContext
 
 class HomePresenter(

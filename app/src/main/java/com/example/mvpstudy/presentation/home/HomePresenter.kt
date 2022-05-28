@@ -1,21 +1,21 @@
 package com.example.mvpstudy.presentation.home
 
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import androidx.palette.graphics.Palette
+import androidx.lifecycle.LiveData
+import com.example.mvpstudy.presentation.home.domain.model.PokedexListEntry
 import com.example.mvpstudy.presentation.home.domain.usecase.abstraction.IPokedexUseCase
 import com.example.mvpstudy.utils.Resource
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlin.coroutines.CoroutineContext
 
 class HomePresenter(
-    val view: HomeContract.View,
-    val pokedexUseCase: IPokedexUseCase,
+    private val view: HomeContract.View,
+    private val pokedexUseCase: IPokedexUseCase,
     override val coroutineContext: CoroutineContext,
 ) : HomeContract.Presenter, CoroutineScope {
 
+    override val pokedexFlow = MutableStateFlow<PokedexListEntry?>(null)
 
     override fun retrieveData() {
         launch {
@@ -24,7 +24,7 @@ class HomePresenter(
                     when (it) {
                         is Resource.Success -> {
                             it.data?.let { pokemonList ->
-                                view.setupAdapter(pokemonList.mapToPokedexListEntry())
+                                pokedexFlow.value = pokemonList.mapToPokedexListEntry()
                             }
                         }
                         is Resource.Error -> view.networkErrorToast()
@@ -34,11 +34,4 @@ class HomePresenter(
             }
         }
     }
-
-    override fun calcDominantColor(drawable: Drawable): Int? {
-        val bitmap = (drawable as BitmapDrawable).bitmap.copy(Bitmap.Config.ARGB_8888, true)
-
-        return Palette.from(bitmap).generate().dominantSwatch?.rgb
-    }
-
 }

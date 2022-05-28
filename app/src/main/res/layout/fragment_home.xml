@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:colorPrimary">
@@ -21,6 +22,69 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
 
+        <TextView
+            android:id="@+id/pokedex_title_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:letterSpacing="0.15"
+            android:text="@string/pokedex_title"
+            android:textColor="@color/black"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pokedex_subtitle_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:letterSpacing="0.1"
+            android:text="@string/pokedex_subtitle"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/pokedex_title_textView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_pokemon_textInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:boxCornerRadiusBottomEnd="16sp"
+            app:boxCornerRadiusBottomStart="16sp"
+            app:boxCornerRadiusTopEnd="16sp"
+            app:boxCornerRadiusTopStart="16sp"
+            app:hintTextColor="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:layout_constraintEnd_toStartOf="@id/search_button"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/pokedex_subtitle_textView"
+            app:startIconDrawable="@drawable/ic_baseline_search_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="16dp"
+                android:backgroundTint="@color/grey_ce"
+                android:hint="@string/name_or_number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="16sp"
+            android:backgroundTint="@color/grey_5c"
+            android:contentDescription="@string/content_filter_description"
+            android:src="@drawable/ic_baseline_playlist_add_24"
+            app:layout_constraintBottom_toBottomOf="@id/search_pokemon_textInputLayout"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toEndOf="@id/search_pokemon_textInputLayout"
+            app:layout_constraintTop_toTopOf="@id/search_pokemon_textInputLayout" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pokedex_recyclerView"
             android:layout_width="0dp"
@@ -28,8 +92,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_pokedex"/>
+            app:layout_constraintTop_toBottomOf="@id/search_pokemon_textInputLayout"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/item_pokedex" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

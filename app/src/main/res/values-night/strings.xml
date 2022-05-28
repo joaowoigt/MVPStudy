@@ -4,4 +4,6 @@
     <string name="succes_login_toast">Login efetuado com sucesso</string>
     <string name="wrong_credentials_toast">Credenciais incorretas</string>
     <string name="null_credentials_toast">Insira algo nos campos</string>
+    <string name="name_or_number">Name or number</string>
+    <string name="pokedex_subtitle">Search for a Pokemon by name or using it\'s national number</string>
 </resources>

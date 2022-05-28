@@ -16,15 +16,17 @@ class PokedexCardViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(pokedexEntry: PokedexEntry) {
-        binding.pokemonNameTextView.text = pokedexEntry.pokemonName
-        binding.pokemonNumberTextView.text = pokedexEntry.number
-        binding.pokemonSpriteImageView.load(pokedexEntry.imageUrl) {
-            this.target {
-                calcDominantColor(it)
-                    ?.let { dominantColor -> binding.card.setCardBackgroundColor(dominantColor) }
+        with(binding) {
+            pokemonNameTextView.text = pokedexEntry.pokemonName
+            pokemonNumberTextView.text = pokedexEntry.number
+            pokemonSpriteImageView.load(pokedexEntry.imageUrl) {
+                this.target {
+                    calcDominantColor(it)
+                        ?.let { dominantColor -> card.setCardBackgroundColor(dominantColor) }
+                }
             }
+            pokemonSpriteImageView.load(pokedexEntry.imageUrl)
         }
-        binding.pokemonSpriteImageView.load(pokedexEntry.imageUrl)
     }
 
     private fun calcDominantColor(drawable: Drawable): Int? {

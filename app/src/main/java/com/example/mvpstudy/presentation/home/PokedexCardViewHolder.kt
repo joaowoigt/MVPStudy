@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.ColorUtils
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -17,12 +18,12 @@ class PokedexCardViewHolder(
 
     fun bind(pokedexEntry: PokedexEntry) {
         with(binding) {
-            pokemonNameTextView.text = pokedexEntry.pokemonName
+            pokemonNameTextView.text = pokedexEntry.pokemonName.replaceFirstChar { it.uppercase() }
             pokemonNumberTextView.text = pokedexEntry.number
             pokemonSpriteImageView.load(pokedexEntry.imageUrl) {
                 this.target {
                     calcDominantColor(it)
-                        ?.let { dominantColor -> card.setCardBackgroundColor(dominantColor) }
+                        ?.let { dominantColor -> card.setCardBackgroundColor(ColorUtils.setAlphaComponent(dominantColor, 99)) }
                 }
             }
             pokemonSpriteImageView.load(pokedexEntry.imageUrl)

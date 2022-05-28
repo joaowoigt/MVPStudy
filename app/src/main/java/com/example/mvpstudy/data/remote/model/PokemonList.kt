@@ -16,7 +16,7 @@ data class PokemonList(
             PokedexEntry(
                 pokemonName = result.name,
                 imageUrl = imageUrl,
-                number = number.toInt()
+                number = number
             )
         }
     )

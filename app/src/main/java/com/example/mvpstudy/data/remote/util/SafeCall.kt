@@ -1,8 +1,6 @@
 package com.example.mvpstudy.data.remote.util
 
 import retrofit2.Response
-import java.lang.Exception
-
 
 suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): Resource<T> {
     return try {

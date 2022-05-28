@@ -3,9 +3,12 @@ package com.example.mvpstudy.presentation.home
 import androidx.paging.PagingData
 import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
 import com.example.mvpstudy.presentation.home.domain.usecase.abstraction.IPokedexUseCase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 class HomePresenter(
@@ -21,6 +24,7 @@ class HomePresenter(
             withContext(Dispatchers.IO) {
                 pokedexUseCase.execute().collect {
                     pokedexFlow.value = it
+                    view.observeFlow()
                 }
             }
         }

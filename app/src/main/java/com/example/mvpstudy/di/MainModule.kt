@@ -7,12 +7,11 @@ import com.example.mvpstudy.presentation.home.HomeContract
 import com.example.mvpstudy.presentation.home.HomePresenter
 import com.example.mvpstudy.presentation.home.domain.usecase.abstraction.IPokedexUseCase
 import com.example.mvpstudy.presentation.home.domain.usecase.concrete.PokedexUseCase
-import com.example.mvpstudy.presentation.login.domain.ILoginUseCase
-import com.example.mvpstudy.presentation.login.domain.LoginUseCase
 import com.example.mvpstudy.presentation.login.LoginContract
 import com.example.mvpstudy.presentation.login.LoginPresenter
+import com.example.mvpstudy.presentation.login.domain.ILoginUseCase
+import com.example.mvpstudy.presentation.login.domain.LoginUseCase
 import com.example.mvpstudy.utils.BASE_API_URL
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import org.koin.dsl.module
@@ -42,6 +41,6 @@ val MainModule = module {
 
     single<IPokedexUseCase> { PokedexUseCase(get()) }
 
-    factory<CoroutineContext> { Job() + Dispatchers.IO}
+    factory<CoroutineContext> { Job() + Dispatchers.IO }
 
 }

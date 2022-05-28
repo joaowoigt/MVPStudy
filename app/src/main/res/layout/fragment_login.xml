@@ -33,7 +33,7 @@
             android:id="@+id/login_editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Login"
+            android:hint="@string/login_hint"
             android:layout_marginVertical="16dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,7 +50,7 @@
             android:id="@+id/password_editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Senha"
+            android:hint="@string/password"
             app:hintTextColor="@color/black"
             android:inputType="textPassword"
             android:layout_marginVertical="16dp"/>
@@ -61,7 +61,7 @@
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Loging ->"
+        android:text="@string/login"
         app:layout_constraintTop_toBottomOf="@id/password_editTextLayout"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintEnd_toEndOf="@id/guideline_end" />

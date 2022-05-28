@@ -7,10 +7,10 @@
         android:id="@+id/card"
         android:layout_width="160dp"
         android:layout_height="200dp"
+        android:layout_margin="8dp"
         android:shadowColor="@color/black"
         app:cardBackgroundColor="@color/purple_200"
         app:cardCornerRadius="16dp"
-        android:layout_margin="8dp"
         app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,10 +36,10 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="28dp"
-                tools:src="@tools:sample/avatars"
                 app:layout_constraintEnd_toEndOf="@id/guideline_end"
                 app:layout_constraintStart_toStartOf="@id/guideline_start"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/pokemon_name_textView"

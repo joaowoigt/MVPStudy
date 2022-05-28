@@ -1,9 +1,6 @@
 package com.example.mvpstudy.presentation.login
 
-import android.view.View
-
 object LoginContract {
-
 
     interface View {
         fun showSuccessToast()

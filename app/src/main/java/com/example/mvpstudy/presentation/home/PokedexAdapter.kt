@@ -3,11 +3,10 @@ package com.example.mvpstudy.presentation.home
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
-import com.example.mvpstudy.presentation.home.domain.model.PokedexListEntry
 
-class PokedexAdapter:PagingDataAdapter<PokedexEntry, PokedexCardViewHolder>(PokemonDiffCallback()) {
+class PokedexAdapter :
+    PagingDataAdapter<PokedexEntry, PokedexCardViewHolder>(PokemonDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokedexCardViewHolder =
@@ -18,6 +17,7 @@ class PokedexAdapter:PagingDataAdapter<PokedexEntry, PokedexCardViewHolder>(Poke
     }
 
 }
+
 class PokemonDiffCallback : DiffUtil.ItemCallback<PokedexEntry>() {
     override fun areItemsTheSame(oldItem: PokedexEntry, newItem: PokedexEntry): Boolean {
         return oldItem.pokemonName == newItem.pokemonName

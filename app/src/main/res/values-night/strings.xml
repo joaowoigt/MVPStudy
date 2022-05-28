@@ -1,10 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MVPstudy</string>
     <string name="password">Senha</string>
-    <string name="login"><![CDATA[Login ->]]></string>
-    <string name="login_hint">Login</string>
     <string name="succes_login_toast">Login efetuado com sucesso</string>
     <string name="wrong_credentials_toast">Credenciais incorretas</string>
-    <string name="empty_credential_toast">Credenciais vazias</string>
     <string name="null_credentials_toast">Insira algo nos campos</string>
 </resources>

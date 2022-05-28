@@ -12,11 +12,11 @@ import com.example.mvpstudy.databinding.FragmentLoginBinding
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class LoginFragment: Fragment(), LoginContract.View {
+class LoginFragment : Fragment(), LoginContract.View {
 
     private lateinit var binding: FragmentLoginBinding
 
-    private val presenter: LoginContract.Presenter by inject { parametersOf(this@LoginFragment)}
+    private val presenter: LoginContract.Presenter by inject { parametersOf(this@LoginFragment) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,25 +29,31 @@ class LoginFragment: Fragment(), LoginContract.View {
     }
 
     override fun showSuccessToast() {
-        Toast.makeText(context, "Login efetuado com sucesso", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, getString(R.string.succes_login_toast), Toast.LENGTH_LONG).show()
     }
 
     override fun showWrongToast() {
-        Toast.makeText(context, "Credenciais incorretas", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, getString(R.string.wrong_credentials_toast), Toast.LENGTH_LONG)
+            .show()
     }
 
     override fun showEmptyToast() {
-        Toast.makeText(context, "Credenciais vazias", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, getString(R.string.empty_credential_toast), Toast.LENGTH_LONG)
+            .show()
     }
 
     override fun showNullToast() {
-        Toast.makeText(context, "Insira algo nos campos", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, getString(R.string.null_credentials_toast), Toast.LENGTH_LONG)
+            .show()
     }
 
     override fun insertListeners() {
         with(binding) {
             loginButton.setOnClickListener {
-                presenter.handleLogin(loginEditText.text.toString(), passwordEditText.text.toString())
+                presenter.handleLogin(
+                    loginEditText.text.toString(),
+                    passwordEditText.text.toString()
+                )
             }
         }
     }

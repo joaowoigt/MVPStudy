@@ -17,7 +17,7 @@ class PokedexCardViewHolder(
 
     fun bind(pokedexEntry: PokedexEntry) {
         binding.pokemonNameTextView.text = pokedexEntry.pokemonName
-        binding.pokemonNumberTextView.text = pokedexEntry.number.toString()
+        binding.pokemonNumberTextView.text = pokedexEntry.number
         binding.pokemonSpriteImageView.load(pokedexEntry.imageUrl) {
             this.target {
                 calcDominantColor(it)

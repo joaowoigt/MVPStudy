@@ -14,15 +14,15 @@ class PokedexUseCase(
 ) : IPokedexUseCase {
 
     override suspend fun execute(): Flow<PagingData<PokedexEntry>> {
-       return Pager(
-           config = PagingConfig(
-               20,
-               enablePlaceholders = false
-           ),
-           pagingSourceFactory = {
-               PokedexPagingSource(repository = pokedexRepository)
-           }
-       ).flow
+        return Pager(
+            config = PagingConfig(
+                20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                PokedexPagingSource(repository = pokedexRepository)
+            }
+        ).flow
     }
 
 }

@@ -3,17 +3,15 @@ package com.example.mvpstudy.presentation.home
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.mvpstudy.data.remote.repository.IPokedexRepository
-import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
 import com.example.mvpstudy.data.remote.util.Resource
-import java.lang.RuntimeException
+import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
 
 class PokedexPagingSource(private val repository: IPokedexRepository) :
     PagingSource<Int, PokedexEntry>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PokedexEntry> {
         try {
-            val response = repository.getPokedex(limit= 20, offSet = params.key ?: 0)
-            return when (response) {
+            return when (val response = repository.getPokedex(limit = 20, offSet = params.key ?: 0)) {
                 is Resource.Success -> {
                     LoadResult.Page(
                         data = response.data.mapToPokedexListEntry().pokedex,

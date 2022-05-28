@@ -1,26 +1,29 @@
 package com.example.mvpstudy.presentation.home
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
 import com.example.mvpstudy.presentation.home.domain.model.PokedexListEntry
 
-class PokedexAdapter:RecyclerView.Adapter<PokedexCardViewHolder>() {
+class PokedexAdapter:PagingDataAdapter<PokedexEntry, PokedexCardViewHolder>(PokemonDiffCallback()) {
 
-    var pokedex: List<PokedexEntry> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokedexCardViewHolder =
         PokedexCardViewHolder.inflate(parent)
 
     override fun onBindViewHolder(holder: PokedexCardViewHolder, position: Int) {
-        holder.bind(pokedex[position])
+        getItem(position)?.let { holder.bind(it) }
     }
 
-    override fun getItemCount(): Int = pokedex.size
-
-    fun setPokedex(pokedexListEntry: PokedexListEntry) {
-        pokedex = pokedexListEntry.pokedex
-        notifyDataSetChanged()
+}
+class PokemonDiffCallback : DiffUtil.ItemCallback<PokedexEntry>() {
+    override fun areItemsTheSame(oldItem: PokedexEntry, newItem: PokedexEntry): Boolean {
+        return oldItem.pokemonName == newItem.pokemonName
     }
 
+    override fun areContentsTheSame(oldItem: PokedexEntry, newItem: PokedexEntry): Boolean {
+        return oldItem == newItem
+    }
 }

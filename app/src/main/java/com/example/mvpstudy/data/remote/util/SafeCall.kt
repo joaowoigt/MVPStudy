@@ -1,6 +1,5 @@
 package com.example.mvpstudy.data.remote.util
 
-import com.example.mvpstudy.utils.Resource
 import retrofit2.Response
 import java.lang.Exception
 

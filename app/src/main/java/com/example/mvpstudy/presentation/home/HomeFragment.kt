@@ -38,7 +38,7 @@ class HomeFragment: Fragment(), HomeContract.View {
         lifecycleScope.launchWhenStarted {
             presenter.pokedexFlow.collect {
                 it?.let { pokedex ->
-                    pokedexAdapter.setPokedex(pokedex)
+                    pokedexAdapter.submitData(pokedex)
                 }
             }
         }

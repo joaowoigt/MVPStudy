@@ -1,13 +1,9 @@
 package com.example.mvpstudy.data.remote.repository
 
 import com.example.mvpstudy.data.remote.PokeService
-import com.example.mvpstudy.data.remote.model.Pokemon
 import com.example.mvpstudy.data.remote.model.PokemonList
 import com.example.mvpstudy.data.remote.util.safeApiCall
-import com.example.mvpstudy.presentation.home.domain.model.PokedexListEntry
-import com.example.mvpstudy.utils.Resource
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import com.example.mvpstudy.data.remote.util.Resource
 
 class PokedexRepository(val pokeService: PokeService) : IPokedexRepository {
 

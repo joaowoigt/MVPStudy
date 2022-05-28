@@ -1,9 +1,8 @@
 package com.example.mvpstudy.presentation.home
 
-import androidx.lifecycle.LiveData
-import com.example.mvpstudy.presentation.home.domain.model.PokedexListEntry
+import androidx.paging.PagingData
+import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
 import com.example.mvpstudy.presentation.home.domain.usecase.abstraction.IPokedexUseCase
-import com.example.mvpstudy.utils.Resource
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
@@ -15,23 +14,16 @@ class HomePresenter(
     override val coroutineContext: CoroutineContext,
 ) : HomeContract.Presenter, CoroutineScope {
 
-    override val pokedexFlow = MutableStateFlow<PokedexListEntry?>(null)
+    override val pokedexFlow = MutableStateFlow<PagingData<PokedexEntry>?>(null)
 
     override fun retrieveData() {
         launch {
             withContext(Dispatchers.IO) {
-                pokedexUseCase.execute(20, 0).collect {
-                    when (it) {
-                        is Resource.Success -> {
-                            it.data?.let { pokemonList ->
-                                pokedexFlow.value = pokemonList.mapToPokedexListEntry()
-                            }
-                        }
-                        is Resource.Error -> view.networkErrorToast()
-                        else -> view.unknownErrorToast()
-                    }
+                pokedexUseCase.execute().collect {
+                    pokedexFlow.value = it
                 }
             }
         }
     }
+
 }

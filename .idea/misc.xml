@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/MVPStudy/MVPStudy/app/src/main/res/drawable/ic_baseline_playlist_add_24.xml" value="0.233" />
-        <entry key="..\:/MVPStudy/MVPStudy/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/MVPStudy/MVPStudy/app/src/main/res/layout/fragment_login.xml" value="0.21603260869565216" />
-        <entry key="..\:/MVPStudy/MVPStudy/app/src/main/res/layout/item_pokedex.xml" value="0.1" />
+        <entry key="../MVPStudy/app/src/main/res/layout/fragment_detail.xml" value="0.375" />
+        <entry key="../MVPStudy/app/src/main/res/layout/fragment_home.xml" value="0.31023550724637683" />
+        <entry key="../MVPStudy/app/src/main/res/layout/item_pokedex.xml" value="0.31023550724637683" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.4218390804597701" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2078125" />
       </map>
     </option>
   </component>

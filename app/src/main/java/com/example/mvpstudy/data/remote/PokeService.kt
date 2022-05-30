@@ -4,7 +4,9 @@ import com.example.mvpstudy.data.remote.model.Pokemon
 import com.example.mvpstudy.data.remote.model.PokemonList
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
+import java.net.IDN
 
 interface PokeService {
 
@@ -14,8 +16,8 @@ interface PokeService {
         @Query("offset") offset: Int
     ): Response<PokemonList>
 
-    @GET("pokemon/@{id}")
+    @GET("pokemon/{pokemonID}")
     suspend fun getPokemonById(
-        @Query("pokemonNumber") pokemonNumber: String
+        @Path("pokemonID") pokemonID: String
     ): Response<Pokemon>
 }

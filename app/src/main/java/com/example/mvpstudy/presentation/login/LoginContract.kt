@@ -1,5 +1,7 @@
 package com.example.mvpstudy.presentation.login
 
+import com.example.mvpstudy.presentation.base.BasePresenter
+
 object LoginContract {
 
     interface View {
@@ -11,7 +13,7 @@ object LoginContract {
         fun navigateToHome()
     }
 
-    interface Presenter {
+    interface Presenter: BasePresenter {
         fun handleLogin(login: String, password: String)
     }
 }

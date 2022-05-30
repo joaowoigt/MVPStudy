@@ -12,19 +12,23 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 class HomePresenter(
-    private val view: HomeContract.View,
+    private var view: HomeContract.View?,
     private val pokedexUseCase: IPokedexUseCase,
     override val coroutineContext: CoroutineContext,
 ) : HomeContract.Presenter, CoroutineScope {
 
     override val pokedexFlow = MutableStateFlow<PagingData<PokedexEntry>?>(null)
 
+    override fun onDestroy() {
+        this.view = null
+    }
+
     override fun retrieveData() {
         launch {
             withContext(Dispatchers.IO) {
                 pokedexUseCase.execute().collect {
                     pokedexFlow.value = it
-                    view.observeFlow()
+                    view?.observeFlow()
                 }
             }
         }

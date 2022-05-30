@@ -1,5 +1,7 @@
 package com.example.mvpstudy.data.remote.model
 
+import com.example.mvpstudy.presentation.detail.domain.model.DetailPokemon
+
 data class Pokemon(
     val abilities: List<Ability>,
     val base_experience: Int,
@@ -19,4 +21,25 @@ data class Pokemon(
     val stats: List<Stat>,
     val types: List<Type>,
     val weight: Int
-)
+) {
+    fun mapToDetailPokemon() = DetailPokemon(
+        abilities = this.abilities,
+        base_experience = this.base_experience,
+        forms = this.forms,
+        game_indices = this.game_indices,
+        height = this.height,
+        held_items = this.held_items,
+        id = this.id,
+        is_default = this.is_default,
+        location_area_encounters = this.location_area_encounters,
+        moves = this.moves,
+        name = this.name,
+        order = this.order,
+        past_types = this.past_types,
+        species = this.species,
+        sprites = this.sprites,
+        stats = this.stats,
+        types = this.types,
+        weight = this.weight
+    )
+}

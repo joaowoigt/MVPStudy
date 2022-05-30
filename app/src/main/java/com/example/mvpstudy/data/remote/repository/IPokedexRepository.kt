@@ -6,5 +6,5 @@ import com.example.mvpstudy.data.remote.util.Resource
 
 interface IPokedexRepository {
     suspend fun getPokedex(limit: Int, offSet: Int): Resource<PokemonList>
-    suspend fun getPokemonById(pokemonNumber: Int): Resource<Pokemon>
+    suspend fun getPokemonById(pokemonID: String): Resource<Pokemon>
 }

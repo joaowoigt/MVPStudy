@@ -5,6 +5,8 @@ import com.example.mvpstudy.data.remote.repository.IPokedexRepository
 import com.example.mvpstudy.data.remote.repository.PokedexRepository
 import com.example.mvpstudy.presentation.detail.PokemonDetailContract
 import com.example.mvpstudy.presentation.detail.PokemonDetailPresenter
+import com.example.mvpstudy.presentation.detail.domain.usecase.abstraction.IGetPokemonByIDUseCase
+import com.example.mvpstudy.presentation.detail.domain.usecase.concret.GetPokemonByIDUseCase
 import com.example.mvpstudy.presentation.home.HomeContract
 import com.example.mvpstudy.presentation.home.HomePresenter
 import com.example.mvpstudy.presentation.home.domain.usecase.abstraction.IPokedexUseCase
@@ -35,15 +37,17 @@ val MainModule = module {
 
     single<IPokedexRepository> { PokedexRepository(get()) }
 
-    single<LoginContract.Presenter> { LoginPresenter(get(), get()) }
+    factory<LoginContract.Presenter> { LoginPresenter(get(), get()) }
 
-    single<HomeContract.Presenter> { HomePresenter(get(), get(), get()) }
+    factory<HomeContract.Presenter> { HomePresenter(get(), get(), get()) }
 
-    single<PokemonDetailContract.Presenter> { PokemonDetailPresenter() }
+    factory<PokemonDetailContract.Presenter> { PokemonDetailPresenter(get(), get(), get()) }
 
     single<ILoginUseCase> { LoginUseCase() }
 
     single<IPokedexUseCase> { PokedexUseCase(get()) }
+
+    single<IGetPokemonByIDUseCase> { GetPokemonByIDUseCase(get()) }
 
     factory<CoroutineContext> { Job() + Dispatchers.IO }
 

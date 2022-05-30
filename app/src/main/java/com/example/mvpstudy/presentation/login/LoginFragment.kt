@@ -28,6 +28,11 @@ class LoginFragment : Fragment(), LoginContract.View {
         return binding.root
     }
 
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
     override fun showSuccessToast() {
         Toast.makeText(context, getString(R.string.succes_login_toast), Toast.LENGTH_LONG).show()
     }

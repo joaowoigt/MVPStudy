@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mvpstudy.databinding.ItemPokedexBinding
 import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
+import com.example.mvpstudy.utils.calcDominantColor
 
 class PokedexCardViewHolder(
     private val onPokemonClicked: (String) -> Unit,
@@ -32,12 +33,6 @@ class PokedexCardViewHolder(
                 onPokemonClicked.invoke(pokedexEntry.number)
             }
         }
-    }
-
-    private fun calcDominantColor(drawable: Drawable): Int? {
-        val bitmap = (drawable as BitmapDrawable).bitmap.copy(Bitmap.Config.ARGB_8888, true)
-
-        return Palette.from(bitmap).generate().dominantSwatch?.rgb
     }
 
     companion object {

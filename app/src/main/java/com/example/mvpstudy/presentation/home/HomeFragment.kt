@@ -33,6 +33,11 @@ class HomeFragment : Fragment(), HomeContract.View {
         return binding.root
     }
 
+    override fun onDestroy() {
+        this.presenter.onDestroy()
+        super.onDestroy()
+    }
+
     override fun observeFlow() {
         lifecycleScope.launchWhenStarted {
             presenter.pokedexFlow.collect {

@@ -13,7 +13,8 @@ import com.example.mvpstudy.databinding.ItemPokedexBinding
 import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
 
 class PokedexCardViewHolder(
-    private val binding: ItemPokedexBinding,
+    private val onPokemonClicked: (String) -> Unit,
+    val binding: ItemPokedexBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(pokedexEntry: PokedexEntry) {
@@ -27,6 +28,9 @@ class PokedexCardViewHolder(
                 }
             }
             pokemonSpriteImageView.load(pokedexEntry.imageUrl)
+            card.setOnClickListener {
+                onPokemonClicked.invoke(pokedexEntry.number)
+            }
         }
     }
 
@@ -37,9 +41,10 @@ class PokedexCardViewHolder(
     }
 
     companion object {
-        fun inflate(parent: ViewGroup): PokedexCardViewHolder =
+        fun inflate(parent: ViewGroup, onPokemonClicked: (String) -> Unit): PokedexCardViewHolder =
             PokedexCardViewHolder(
-                ItemPokedexBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                binding = ItemPokedexBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+                onPokemonClicked = onPokemonClicked
             )
     }
 

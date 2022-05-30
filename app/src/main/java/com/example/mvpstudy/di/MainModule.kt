@@ -3,6 +3,8 @@ package com.example.mvpstudy.di
 import com.example.mvpstudy.data.remote.PokeService
 import com.example.mvpstudy.data.remote.repository.IPokedexRepository
 import com.example.mvpstudy.data.remote.repository.PokedexRepository
+import com.example.mvpstudy.presentation.detail.PokemonDetailContract
+import com.example.mvpstudy.presentation.detail.PokemonDetailPresenter
 import com.example.mvpstudy.presentation.home.HomeContract
 import com.example.mvpstudy.presentation.home.HomePresenter
 import com.example.mvpstudy.presentation.home.domain.usecase.abstraction.IPokedexUseCase
@@ -36,6 +38,8 @@ val MainModule = module {
     single<LoginContract.Presenter> { LoginPresenter(get(), get()) }
 
     single<HomeContract.Presenter> { HomePresenter(get(), get(), get()) }
+
+    single<PokemonDetailContract.Presenter> { PokemonDetailPresenter() }
 
     single<ILoginUseCase> { LoginUseCase() }
 

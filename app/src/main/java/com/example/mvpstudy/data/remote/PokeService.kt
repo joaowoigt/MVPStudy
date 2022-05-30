@@ -1,5 +1,6 @@
 package com.example.mvpstudy.data.remote
 
+import com.example.mvpstudy.data.remote.model.Pokemon
 import com.example.mvpstudy.data.remote.model.PokemonList
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,4 +13,9 @@ interface PokeService {
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
     ): Response<PokemonList>
+
+    @GET("pokemon/@{id}")
+    suspend fun getPokemonById(
+        @Query("pokemonNumber") pokemonNumber: String
+    ): Response<Pokemon>
 }

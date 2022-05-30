@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.mvpstudy.R
 import com.example.mvpstudy.databinding.FragmentHomeBinding
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
@@ -41,10 +44,15 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun setupAdapter() {
-        pokedexAdapter = PokedexAdapter()
+        pokedexAdapter = PokedexAdapter() { navigateToPokemonDetail(it) }
         with(binding.pokedexRecyclerView) {
             adapter = pokedexAdapter
             layoutManager = GridLayoutManager(context, 2)
         }
+    }
+
+    private fun navigateToPokemonDetail(pokemonNumber: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToPokemonDetailFragment(pokemonNumber)
+        findNavController().navigate(action)
     }
 }

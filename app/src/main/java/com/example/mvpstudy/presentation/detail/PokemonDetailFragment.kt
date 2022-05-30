@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.mvpstudy.databinding.FragmentDetailBinding
 import com.example.mvpstudy.presentation.detail.domain.model.DetailPokemon
+import com.example.mvpstudy.utils.FlowState
 import com.example.mvpstudy.utils.calcDominantColor
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
@@ -37,7 +38,10 @@ class PokemonDetailFragment: Fragment(), PokemonDetailContract.View {
     override fun observeFlow() {
         lifecycleScope.launchWhenStarted {
             presenter.detailPokemon.collect {
-                setupCard(it)
+                when(it) {
+                    is FlowState.Success -> setupCard(it.data)
+                }
+
             }
         }
     }

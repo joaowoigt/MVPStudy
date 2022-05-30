@@ -2,6 +2,7 @@ package com.example.mvpstudy.presentation.detail
 
 import com.example.mvpstudy.presentation.base.BasePresenter
 import com.example.mvpstudy.presentation.detail.domain.model.DetailPokemon
+import com.example.mvpstudy.utils.FlowState
 import kotlinx.coroutines.flow.MutableStateFlow
 
 object PokemonDetailContract {
@@ -12,7 +13,7 @@ object PokemonDetailContract {
     }
 
     interface Presenter: BasePresenter {
-        val detailPokemon: MutableStateFlow<DetailPokemon?>
+        val detailPokemon: MutableStateFlow<FlowState<DetailPokemon>>
         fun retrievePokemonData(pokemonID: String)
     }
 }

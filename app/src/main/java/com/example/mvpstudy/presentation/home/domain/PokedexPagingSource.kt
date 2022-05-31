@@ -1,4 +1,4 @@
-package com.example.mvpstudy.presentation.home
+package com.example.mvpstudy.presentation.home.domain
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

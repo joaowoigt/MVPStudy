@@ -3,6 +3,7 @@ package com.example.mvpstudy.presentation.home
 import androidx.paging.PagingData
 import com.example.mvpstudy.presentation.base.BasePresenter
 import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
+import com.example.mvpstudy.utils.FlowState
 import kotlinx.coroutines.flow.MutableStateFlow
 
 object HomeContract {
@@ -13,6 +14,6 @@ object HomeContract {
 
     interface Presenter: BasePresenter {
         fun retrieveData()
-        val pokedexFlow: MutableStateFlow<PagingData<PokedexEntry>?>
+        val pokedexFlow: MutableStateFlow<FlowState<PagingData<PokedexEntry>>>
     }
 }

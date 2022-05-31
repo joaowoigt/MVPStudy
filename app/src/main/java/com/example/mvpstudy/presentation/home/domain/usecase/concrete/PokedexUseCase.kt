@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.mvpstudy.data.remote.repository.IPokedexRepository
-import com.example.mvpstudy.presentation.home.PokedexPagingSource
+import com.example.mvpstudy.presentation.home.domain.PokedexPagingSource
 import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
 import com.example.mvpstudy.presentation.home.domain.usecase.abstraction.IPokedexUseCase
 import kotlinx.coroutines.flow.Flow

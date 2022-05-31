@@ -11,5 +11,6 @@
     <string name="pokedex_subtitle">Search for a Pokemon by name or using it\'s national number</string>
     <string name="pokedex_title">Pokédex</string>
     <string name="content_filter_description">Filters</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
+    <string name="loading_error">Loading error…</string>
 </resources>

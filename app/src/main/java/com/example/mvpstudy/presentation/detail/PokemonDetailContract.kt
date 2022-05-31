@@ -9,7 +9,6 @@ object PokemonDetailContract {
 
     interface View {
         fun observeFlow()
-        fun showError()
     }
 
     interface Presenter: BasePresenter {

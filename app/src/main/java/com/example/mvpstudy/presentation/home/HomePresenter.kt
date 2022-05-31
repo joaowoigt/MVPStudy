@@ -30,6 +30,7 @@ class HomePresenter(
     override fun retrieveData() {
         launch {
             withContext(Dispatchers.IO) {
+                view?.observeFlow()
                 pokedexFlow.value = FlowState.Loading
                 pokedexUseCase.execute()
                     .catch {
@@ -37,7 +38,7 @@ class HomePresenter(
                 }
                     .collect {
                         pokedexFlow.value = FlowState.Success(it)
-                        view?.observeFlow()
+
                     }
             }
         }

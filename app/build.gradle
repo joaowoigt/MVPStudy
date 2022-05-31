@@ -82,6 +82,8 @@ dependencies {
     implementation "com.google.accompanist:accompanist-coil:0.7.0"
 
     //Paging3
-    implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
 }

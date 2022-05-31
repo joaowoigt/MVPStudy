@@ -45,7 +45,7 @@ class PokemonDetailFragment: Fragment(), PokemonDetailContract.View {
         }
     }
 
-    override fun observeFlow() {
+    override fun observeDetailFlow() {
         lifecycleScope.launchWhenStarted {
             presenter.detailPokemon.collect { flowState ->
                 when(flowState) {
@@ -61,6 +61,10 @@ class PokemonDetailFragment: Fragment(), PokemonDetailContract.View {
 
             }
         }
+    }
+
+    override fun observeDescriptionAndEvolutionFlow() {
+        Log.d(" sidja", "dsada")
     }
 
 

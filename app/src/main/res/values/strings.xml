@@ -11,6 +11,7 @@
     <string name="pokedex_subtitle">Search for a Pokemon by name or using it\'s national number</string>
     <string name="pokedex_title">Pokédex</string>
     <string name="content_filter_description">Filters</string>
+    <string name="long_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor porttitor ante, vel ultricies augue tempus ac. Fusce id quam eget lacus pharetra cursus. Proin ac ante pretium, ultrices velit sit amet, consectetur sapien. Fusce in bibendum sapien, et imperdiet lacus. Nam lobortis commodo ante eu venenatis. Ut at ullamcorper sapien. Fusce vel lectus eleifend, dapibus dui quis, commodo nunc. Integer fermentum ante elit, non volutpat massa pharetra sit amet. Sed blandit malesuada commodo. Duis volutpat pellentesque sem vitae placerat. Praesent orci sapien, tempus vel varius in, pellentesque ac lectus.</string>
     <string name="loading">Loading…</string>
     <string name="loading_error">Loading error…</string>
 </resources>

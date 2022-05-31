@@ -17,7 +17,7 @@ class GetPokemonByIDUseCase(
         return flow {
             when(val result = repository.getPokemonById(pokemonID)) {
                 is Resource.Success -> emit(result.data.mapToDetailPokemon())
-                is Resource.Error -> Log.d("useCase", result.message)
+                is Resource.Error -> Log.d("useCase ", result.message)
             }
         }
     }

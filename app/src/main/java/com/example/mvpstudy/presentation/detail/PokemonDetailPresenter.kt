@@ -1,32 +1,52 @@
 package com.example.mvpstudy.presentation.detail
 
 import com.example.mvpstudy.presentation.detail.domain.model.DetailPokemon
+import com.example.mvpstudy.presentation.detail.domain.model.PokemonSpeciesEntry
+import com.example.mvpstudy.presentation.detail.domain.usecase.abstraction.IGetDescriptionAndEvolutionUseCase
 import com.example.mvpstudy.presentation.detail.domain.usecase.abstraction.IGetPokemonByIDUseCase
 import com.example.mvpstudy.utils.FlowState
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlin.coroutines.CoroutineContext
 
 class PokemonDetailPresenter(
     var view: PokemonDetailContract.View?,
-    val getPokemonByIDUseCase: IGetPokemonByIDUseCase,
-    override val coroutineContext: CoroutineContext
+    private val getPokemonByIDUseCase: IGetPokemonByIDUseCase,
+    private val getPokemonDescriptionAndEvolutionUseCase: IGetDescriptionAndEvolutionUseCase,
+    override val coroutineContext: CoroutineContext,
 ) : PokemonDetailContract.Presenter, CoroutineScope {
 
 
-    override val detailPokemon = MutableStateFlow<FlowState<DetailPokemon>>(FlowState.Initial)
+    private val _detailPokemon = MutableStateFlow<FlowState<DetailPokemon>>(FlowState.Initial)
+    override var detailPokemon: StateFlow<FlowState<DetailPokemon>> = _detailPokemon.asStateFlow()
+
+    private val _descriptionAndEvolution = MutableStateFlow<FlowState<PokemonSpeciesEntry>>(FlowState.Initial)
+    override val descriptionAndEvolution: StateFlow<FlowState<PokemonSpeciesEntry>> = _descriptionAndEvolution.asStateFlow()
+
 
     override fun retrievePokemonData(pokemonID: String) {
         launch {
             withContext(Dispatchers.IO) {
-                view?.observeFlow()
-                detailPokemon.value = FlowState.Loading
+                view?.observeDetailFlow()
+                _detailPokemon.value = FlowState.Loading
                 getPokemonByIDUseCase.execute(pokemonID).catch {
-                    detailPokemon.value = FlowState.Error("Loading error...")
+                    _detailPokemon.value = FlowState.Error("Loading error...")
                 }.collect {
-                    detailPokemon.value = FlowState.Success(it)
+                    _detailPokemon.value = FlowState.Success(it)
+                }
+            }
+        }
+    }
+
+    override fun retrievePokemonDescriptionAndEvolution(pokemonID: String) {
+        launch {
+            withContext(Dispatchers.IO) {
+                view?.observeDescriptionAndEvolutionFlow()
+                _descriptionAndEvolution.value = FlowState.Loading
+                getPokemonDescriptionAndEvolutionUseCase.execute(pokemonID).catch {
+                    _descriptionAndEvolution.value = FlowState.Error("Loading Error...")
+                }.collect {
+                    _descriptionAndEvolution.value = FlowState.Success(it)
                 }
             }
         }

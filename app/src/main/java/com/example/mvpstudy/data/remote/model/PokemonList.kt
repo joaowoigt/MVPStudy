@@ -12,10 +12,8 @@ data class PokemonList(
     fun mapToPokedexListEntry() = PokedexListEntry(
         pokedex = results.mapIndexed { index, result ->
             val number =  result.url.dropLast(1).takeLastWhile { it.isDigit() }
-            val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png"
             PokedexEntry(
                 pokemonName = result.name,
-                imageUrl = imageUrl,
                 number = number
             )
         }

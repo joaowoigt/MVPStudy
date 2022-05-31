@@ -1,5 +1,6 @@
 package com.example.mvpstudy.data.remote
 
+import com.example.mvpstudy.data.remote.model.EvolutionChain
 import com.example.mvpstudy.data.remote.model.Pokemon
 import com.example.mvpstudy.data.remote.model.PokemonList
 import retrofit2.Response
@@ -20,4 +21,9 @@ interface PokeService {
     suspend fun getPokemonById(
         @Path("pokemonID") pokemonID: String
     ): Response<Pokemon>
+
+    @GET("evolution-chain/{pokemonID}")
+    suspend fun getPokemonEvolutionChain(
+        @Path("pokemonID") pokemonID: String
+    ): Response<EvolutionChain>
 }

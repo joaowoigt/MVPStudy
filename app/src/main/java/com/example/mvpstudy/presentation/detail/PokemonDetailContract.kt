@@ -14,5 +14,6 @@ object PokemonDetailContract {
     interface Presenter: BasePresenter {
         val detailPokemon: MutableStateFlow<FlowState<DetailPokemon>>
         fun retrievePokemonData(pokemonID: String)
+        fun retrievePokemonEvolutionChain(pokemonID: String)
     }
 }

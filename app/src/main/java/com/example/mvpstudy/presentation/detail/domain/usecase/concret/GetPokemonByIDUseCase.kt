@@ -12,7 +12,6 @@ class GetPokemonByIDUseCase(
     private val repository: IPokedexRepository
 ): IGetPokemonByIDUseCase {
 
-
     override suspend fun execute(pokemonID: String): Flow<DetailPokemon> {
         return flow {
             when(val result = repository.getPokemonById(pokemonID)) {

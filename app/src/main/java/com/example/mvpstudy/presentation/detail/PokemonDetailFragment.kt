@@ -35,6 +35,7 @@ class PokemonDetailFragment: Fragment(), PokemonDetailContract.View {
     ): View? {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
         presenter.retrievePokemonData(args.id)
+        presenter.retrievePokemonEvolutionChain(args.id)
         insertListeners()
         return binding.root
     }

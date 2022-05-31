@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import coil.load
 import com.example.mvpstudy.databinding.DetailTabDescriptionBinding
 import com.example.mvpstudy.presentation.detail.domain.model.PokemonSpeciesEntry
+import com.example.mvpstudy.utils.createPokemonCard
 
 class DescriptionAndEvolutionTabFragment : Fragment() {
 
@@ -26,7 +28,7 @@ class DescriptionAndEvolutionTabFragment : Fragment() {
     private fun setupView() {
         with(binding) {
             pokemonSpeciesEntry?.let {
-
+                card.createPokemonCard(pokemonSpeciesEntry.evolutions.imageUrl, pokemonSpriteImageView)
             }
         }
     }

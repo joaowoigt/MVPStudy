@@ -15,8 +15,12 @@ import coil.load
 import com.example.mvpstudy.R
 import com.example.mvpstudy.databinding.FragmentDetailBinding
 import com.example.mvpstudy.presentation.detail.domain.model.DetailPokemon
+import com.example.mvpstudy.presentation.detail.domain.model.PokemonSpeciesEntry
+import com.example.mvpstudy.presentation.detail.tabs.DetailAdapter
+import com.example.mvpstudy.presentation.home.domain.model.PokedexEntry
 import com.example.mvpstudy.utils.FlowState
 import com.example.mvpstudy.utils.createPokemonCard
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -25,6 +29,7 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
 
     private val presenter by inject<PokemonDetailContract.Presenter> { parametersOf(this) }
     private lateinit var binding: FragmentDetailBinding
+    private lateinit var adapter: DetailAdapter
     private val args: PokemonDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -34,6 +39,7 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
     ): View? {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
         presenter.retrievePokemonData(args.id)
+        presenter.retrievePokemonDescriptionAndEvolution(args.id)
         insertListeners()
         return binding.root
     }
@@ -63,7 +69,15 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
     }
 
     override fun observeDescriptionAndEvolutionFlow() {
-        Log.d(" sidja", "dsada")
+        lifecycleScope.launchWhenStarted {
+            presenter.descriptionAndEvolution.collect { flowState ->
+                when (flowState) {
+                    is FlowState.Loading -> println("Loading")
+                    is FlowState.Success -> setupAdapter(flowState.data)
+
+                }
+            }
+        }
     }
 
 
@@ -72,6 +86,18 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
             pokemonNumberTextView.text = detailPokemon?.id.toString()
             card.createPokemonCard(detailPokemon?.sprites?.front_default, pokemonSpriteImageView)
         }
+    }
+
+    private fun setupAdapter(pokemonSpeciesEntry: PokemonSpeciesEntry) {
+        adapter = DetailAdapter(this)
+        binding.viewPager.adapter = adapter
+        adapter.addNewItem(pokemonSpeciesEntry)
+        TabLayoutMediator(binding.tabLayout, binding.viewPager, true) { tab, position ->
+            tab.text =  when(position) {
+                0 -> "Description"
+                else -> {"fail"}
+            }
+        }.attach()
     }
 
     private fun showLoading() {

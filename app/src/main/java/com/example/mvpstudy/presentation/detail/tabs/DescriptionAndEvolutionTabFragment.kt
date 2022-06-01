@@ -6,13 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.load
+import com.example.mvpstudy.data.remote.model.PokemonSpecies
 import com.example.mvpstudy.databinding.DetailTabDescriptionBinding
 import com.example.mvpstudy.presentation.detail.domain.model.PokemonSpeciesEntry
+import com.example.mvpstudy.utils.MEW_IMAGE
 import com.example.mvpstudy.utils.createPokemonCard
 
 class DescriptionAndEvolutionTabFragment : Fragment() {
 
-    private val pokemonSpeciesEntry: PokemonSpeciesEntry? = null
+    private val pokemonImageUrl: String? by lazy { arguments?.getString(POKEMON_SPECIES_IMAGE_URL) }
+    private val pokemonDescription: String? by lazy {
+        arguments?.getString(
+            POKEMON_SPECIES_DESCRIPTIOM
+        )
+    }
     private lateinit var binding: DetailTabDescriptionBinding
 
     override fun onCreateView(
@@ -27,9 +34,25 @@ class DescriptionAndEvolutionTabFragment : Fragment() {
 
     private fun setupView() {
         with(binding) {
-            pokemonSpeciesEntry?.let {
-                card.createPokemonCard(pokemonSpeciesEntry.evolutions.imageUrl, pokemonSpriteImageView)
-            }
+            card.createPokemonCard(
+                pokemonImageUrl ?: MEW_IMAGE,
+                pokemonSpriteImageView
+            )
+            descriptionTextView.text = pokemonDescription?.replace("\n", " ")
         }
+    }
+
+
+    companion object {
+        private const val POKEMON_SPECIES_IMAGE_URL = "POKEMON_SPECIES_IMAGE_URL"
+        private const val POKEMON_SPECIES_DESCRIPTIOM = "POKEMON_SPECIES_DESCRIPTION"
+
+        fun newInstance(pokemonSpeciesEntry: PokemonSpeciesEntry) =
+            DescriptionAndEvolutionTabFragment().apply {
+                arguments = Bundle().apply {
+                    putString(POKEMON_SPECIES_IMAGE_URL, pokemonSpeciesEntry.evolutions?.imageUrl)
+                    putString(POKEMON_SPECIES_DESCRIPTIOM, pokemonSpeciesEntry.description)
+                }
+            }
     }
 }

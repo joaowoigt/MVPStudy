@@ -14,7 +14,6 @@ import com.example.mvpstudy.R
 import com.example.mvpstudy.databinding.FragmentDetailBinding
 import com.example.mvpstudy.databinding.LoadingScreenBinding
 import com.example.mvpstudy.presentation.detail.domain.model.DetailPokemon
-import com.example.mvpstudy.presentation.detail.domain.model.PokemonSpeciesEntry
 import com.example.mvpstudy.presentation.detail.tabs.DetailAdapter
 import com.example.mvpstudy.utils.FlowState
 import com.example.mvpstudy.utils.createPokemonCard
@@ -27,7 +26,7 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
 
     private val presenter by inject<PokemonDetailContract.Presenter> { parametersOf(this) }
     private lateinit var binding: FragmentDetailBinding
-    private lateinit var adapter: DetailAdapter
+    private val adapter: DetailAdapter by lazy { DetailAdapter(this) }
     private val args: PokemonDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -55,6 +54,7 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
                     is FlowState.Loading -> showLoading(binding.pageLoadingScreen)
                     is FlowState.Success -> {
                         setupCard(flowState.data)
+                        setupAdapter(flowState.data)
                         hideLoading(binding.pageLoadingScreen)
                     }
                     is FlowState.Error -> {
@@ -72,8 +72,8 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
                 when (flowState) {
                     is FlowState.Loading -> showLoading(binding.moreDetailLoading)
                     is FlowState.Success -> {
+                        adapter.addNewItem(flowState.data)
                         hideLoading(binding.moreDetailLoading)
-                        setupAdapter(flowState.data)
                     }
                     is FlowState.Error -> showToastError(flowState.message)
                 }
@@ -95,13 +95,13 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
         }
     }
 
-    private fun setupAdapter(pokemonSpeciesEntry: PokemonSpeciesEntry) {
-        adapter = DetailAdapter(this)
+    private fun setupAdapter(detailPokemon: DetailPokemon) {
         binding.viewPager.adapter = adapter
-        adapter.addNewItem(pokemonSpeciesEntry)
+        adapter.addNewItem(detailPokemon.stats)
         TabLayoutMediator(binding.tabLayout, binding.viewPager, true) { tab, position ->
             tab.text = when (position) {
                 0 -> "Description"
+                1 -> "Stats"
                 else -> "fail"
             }
         }.attach()

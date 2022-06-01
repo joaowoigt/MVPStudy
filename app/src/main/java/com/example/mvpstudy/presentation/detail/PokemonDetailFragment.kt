@@ -88,6 +88,9 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
                 pokemonNameTextView.text = detailPokemon.name.replaceFirstChar { it.uppercase() }
                 pokemonNumberTextView.text = detailPokemon.id.toString()
                 card.createPokemonCard(detailPokemon.sprites.front_default, pokemonSpriteImageView)
+                pokemonSpriteImageView.startAnimation(
+                    AnimationUtils.loadAnimation(context, R.anim.pokemon_movement)
+                )
             }
         }
     }

@@ -23,3 +23,4 @@ fun CardView.createPokemonCard(imageUrl: String?, imageView: ImageView) {
         }
     }
 }
+

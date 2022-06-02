@@ -20,7 +20,7 @@ class DetailAdapter(fragment: PokemonDetailFragment) : FragmentStateAdapter(frag
         fragmentList.add(DescriptionAndEvolutionTabFragment.newInstance(pokemonSpeciesEntry))
     }
 
-    fun addNewItem(stats: List<Stat>) {
+    fun addNewItem(stats: List<Stat>, color: Int?) {
         fragmentList.add(
             StatsTabFragment.newInstance(
                 stats[HPSTATINDEX].base_stat,
@@ -29,16 +29,17 @@ class DetailAdapter(fragment: PokemonDetailFragment) : FragmentStateAdapter(frag
                 stats[SPATTACKSTATINDEX].base_stat,
                 stats[SPDEFENSESTATINDEX].base_stat,
                 stats[SPEEDSTATINDEX].base_stat,
+                color,
             )
         )
     }
 
     companion object {
-        const val HPSTATINDEX = 0
-        const val ATTACKSTATINDEX = 1
-        const val DEFENSESTATSINDEX = 2
-        const val SPATTACKSTATINDEX = 3
-        const val SPDEFENSESTATINDEX = 4
-        const val SPEEDSTATINDEX = 5
+        private const val HPSTATINDEX = 0
+        private const val ATTACKSTATINDEX = 1
+        private const val DEFENSESTATSINDEX = 2
+        private const val SPATTACKSTATINDEX = 3
+        private const val SPDEFENSESTATINDEX = 4
+        private const val SPEEDSTATINDEX = 5
     }
 }

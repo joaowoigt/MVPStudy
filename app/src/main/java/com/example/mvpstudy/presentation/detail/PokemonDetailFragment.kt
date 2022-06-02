@@ -6,16 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.load
+import coil.request.ImageRequest
 import com.example.mvpstudy.R
 import com.example.mvpstudy.databinding.FragmentDetailBinding
 import com.example.mvpstudy.databinding.LoadingScreenBinding
 import com.example.mvpstudy.presentation.detail.domain.model.DetailPokemon
 import com.example.mvpstudy.presentation.detail.tabs.DetailAdapter
 import com.example.mvpstudy.utils.FlowState
+import com.example.mvpstudy.utils.calcDominantColor
 import com.example.mvpstudy.utils.createPokemonCard
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.collect
@@ -97,7 +101,7 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
 
     private fun setupAdapter(detailPokemon: DetailPokemon) {
         binding.viewPager.adapter = adapter
-        adapter.addNewItem(detailPokemon.stats)
+        createStatsTab(detailPokemon)
         TabLayoutMediator(binding.tabLayout, binding.viewPager, true) { tab, position ->
             tab.text = when (position) {
                 0 -> "Description"
@@ -105,6 +109,20 @@ class PokemonDetailFragment : Fragment(), PokemonDetailContract.View {
                 else -> "fail"
             }
         }.attach()
+    }
+
+    private fun createStatsTab(detailPokemon: DetailPokemon) {
+        binding.pokemonSpriteImageView.load(detailPokemon.sprites.front_default) {
+            this.target {
+                val color = calcDominantColor(it)?.let { result ->
+                    ColorUtils.setAlphaComponent(
+                        result,
+                        99
+                    )
+                }
+                adapter.addNewItem(detailPokemon.stats, color)
+            }
+        }
     }
 
     private fun showLoading(loadingView: LoadingScreenBinding) {

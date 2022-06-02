@@ -12,12 +12,13 @@ import com.example.mvpstudy.databinding.DetailTabStatsBinding
 class StatsTabFragment : Fragment() {
 
     private lateinit var binding: DetailTabStatsBinding
-    private val hpValues by lazy { arguments?.getInt(HPVALUES) }
-    private val attackValues by lazy { arguments?.getInt(ATTACKVALUES) }
-    private val defenseValues by lazy { arguments?.getInt(DEFENSEVALUES) }
-    private val spAttackValues by lazy { arguments?.getInt(SPATTACKVALUES) }
     private val spDefenseValues by lazy { arguments?.getInt(SPDEFENSEVALUES) }
+    private val spAttackValues by lazy { arguments?.getInt(SPATTACKVALUES) }
+    private val defenseValues by lazy { arguments?.getInt(DEFENSEVALUES) }
+    private val attackValues by lazy { arguments?.getInt(ATTACKVALUES) }
     private val speedValues by lazy { arguments?.getInt(SPEEDVALUES) }
+    private val hpValues by lazy { arguments?.getInt(HPVALUES) }
+    private val color by lazy { arguments?.getInt(COLOR) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,21 +31,32 @@ class StatsTabFragment : Fragment() {
     }
 
     private fun setupView() {
-        hpValues?.let { binding.hpStatsIndicator.progress = it }
-        attackValues?.let { binding.attackStatsIndicator.progress = it }
-        defenseValues?.let { binding.defenseStatsIndicator.progress = it }
-        spAttackValues?.let { binding.spAttackStatsIndicator.progress = it }
-        spDefenseValues?.let { binding.spDefenseStatsIndicator.progress = it }
-        speedValues?.let { binding.speedStatsIndicator.progress = it }
+        with(binding) {
+            hpValues?.let { hpStatsIndicator.progress = it }
+            attackValues?.let { attackStatsIndicator.progress = it }
+            defenseValues?.let { defenseStatsIndicator.progress = it }
+            spAttackValues?.let { spAttackStatsIndicator.progress = it }
+            spDefenseValues?.let { spDefenseStatsIndicator.progress = it }
+            speedValues?.let { speedStatsIndicator.progress = it }
+
+            color?.run {
+                hpStatsIndicator.setIndicatorColor(this)
+                attackStatsIndicator.setIndicatorColor(this)
+                defenseStatsIndicator.setIndicatorColor(this)
+                spAttackStatsIndicator.setIndicatorColor(this)
+                spDefenseStatsIndicator.setIndicatorColor(this)
+                speedStatsIndicator.setIndicatorColor(this)
+            }
+        }
     }
 
     companion object {
-        private const val HPVALUES = "HPVALUES"
-        private const val ATTACKVALUES = "ATTACKVALUES"
-        private const val DEFENSEVALUES = "DEFENSEVALUES"
-        private const val SPATTACKVALUES = "SPATTACKVALUES"
         private const val SPDEFENSEVALUES = "SPDEFENSEVALUES"
+        private const val SPATTACKVALUES = "SPATTACKVALUES"
+        private const val DEFENSEVALUES = "DEFENSEVALUES"
+        private const val ATTACKVALUES = "ATTACKVALUES"
         private const val SPEEDVALUES = "SPEEDVALUES"
+        private const val HPVALUES = "HPVALUES"
         private const val COLOR = "COLOR"
 
         fun newInstance(
@@ -54,6 +66,7 @@ class StatsTabFragment : Fragment() {
             spAttackValues: Int,
             spDefenseValues: Int,
             speedValues: Int,
+            color: Int?
         ) = StatsTabFragment().apply {
             arguments = Bundle().apply {
                 putInt(HPVALUES, hpValues)
@@ -62,8 +75,8 @@ class StatsTabFragment : Fragment() {
                 putInt(SPATTACKVALUES, spAttackValues)
                 putInt(SPDEFENSEVALUES, spDefenseValues)
                 putInt(SPEEDVALUES, speedValues)
+                color?.let { putInt(COLOR, it) }
             }
         }
     }
-
 }

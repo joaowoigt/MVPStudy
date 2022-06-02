@@ -7,4 +7,10 @@
     <string name="name_or_number">Name or number</string>
     <string name="pokedex_subtitle">Search for a Pokemon by name or using it\'s national number</string>
     <string name="loading">Loading...</string>
+    <string name="hp_stats">HP</string>
+    <string name="attack_stats">Attack</string>
+    <string name="defense_stats">Defense</string>
+    <string name="sp_attack_stats">Sp-Attack</string>
+    <string name="sp_defense_stats">Sp-Defense</string>
+    <string name="speed_stats">Speed</string>
 </resources>

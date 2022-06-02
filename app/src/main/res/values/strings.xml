@@ -14,4 +14,10 @@
     <string name="long_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor porttitor ante, vel ultricies augue tempus ac. Fusce id quam eget lacus pharetra cursus. Proin ac ante pretium, ultrices velit sit amet, consectetur sapien. Fusce in bibendum sapien, et imperdiet lacus. Nam lobortis commodo ante eu venenatis. Ut at ullamcorper sapien. Fusce vel lectus eleifend, dapibus dui quis, commodo nunc. Integer fermentum ante elit, non volutpat massa pharetra sit amet. Sed blandit malesuada commodo. Duis volutpat pellentesque sem vitae placerat. Praesent orci sapien, tempus vel varius in, pellentesque ac lectus.</string>
     <string name="loading">Loading…</string>
     <string name="loading_error">Loading error…</string>
+    <string name="hp_stats">HP</string>
+    <string name="attack_stats">Attack</string>
+    <string name="defense_stats">Defense</string>
+    <string name="sp_attack_stats">Sp-Attack</string>
+    <string name="sp_defense_stats">Sp-Defense</string>
+    <string name="speed_stats">Speed</string>
 </resources>

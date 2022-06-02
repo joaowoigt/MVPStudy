@@ -7,10 +7,17 @@
         android:layout_height="match_parent"
         android:background="?attr/colorPrimary">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="140dp" />
+
         <LinearLayout
             android:id="@+id/hp_linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -18,18 +25,172 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="HP"
+                android:text="@string/hp_stats"
+                android:textAllCaps="true"
                 android:textSize="24sp" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/hp_statsIndicator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:progress="80"
+                app:indicatorColor="?attr/colorSecondary"
+                app:trackColor="@color/grey_ce"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/attack_linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hp_linearLayout">
+
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/attack_stats"
+                android:textAllCaps="true"
+                android:textSize="24sp" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/attack_statsIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:indicatorColor="?attr/colorSecondary"
+                app:trackColor="@color/grey_ce"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/defense_linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/attack_linearLayout">
+
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/defense_stats"
+                android:textAllCaps="true"
+                android:textSize="24sp" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/defense_statsIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:indicatorColor="?attr/colorSecondary"
+                app:trackColor="@color/grey_ce"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/sp_attack_linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/defense_linearLayout">
+
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/sp_attack_stats"
+                android:textAllCaps="true"
+                android:textSize="24sp" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/sp_attack_statsIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:indicatorColor="?attr/colorSecondary"
+                app:trackColor="@color/grey_ce"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/sp_defense_linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sp_attack_linearLayout">
+
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/sp_defense_stats"
+                android:textAllCaps="true"
+                android:textSize="24sp" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/sp_defense_statsIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:indicatorColor="?attr/colorSecondary"
+                app:trackColor="@color/grey_ce"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/speed_linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sp_defense_linearLayout">
+
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/speed_stats"
+                android:textAllCaps="true"
+                android:textSize="24sp" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/speed_statsIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:indicatorColor="?attr/colorSecondary"
                 app:trackColor="@color/grey_ce"
                 app:trackCornerRadius="8dp"
